@@ -38,7 +38,6 @@ def findLCA(root, n1, n2):
     if (not findPath(root, path1, n1) or not findPath(root, path2, n2)): 
         return -1 
     
-    print(path1)
     # Compare the paths to get the first different value 
     i = 0 
     while(i < len(path1) and i < len(path2)): 
