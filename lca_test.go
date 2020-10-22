@@ -15,16 +15,21 @@ func TestFindLCA(t *testing.T){
 	root.right.left.left = &bin_node{key:10}
 	root.left.left.left.left = &bin_node{key:11}
 		
-
+/*  -- test for base functionality -- */
 	lca_4_5 := findLCA(root, 4, 5)
 	lca_4_6 := findLCA(root, 4, 6)
 	lca_3_4 := findLCA(root, 3, 4)
 	lca_2_2 := findLCA(root, 2, 2)
 	lca_6_5 := findLCA(root, 6, 5)
 
+/*  -- test for 1 node not in graph -- */	
 	lca_12_10 := findLCA(root, 12, 10)
 
+/*  -- test for both nodes not in graph -- */
 	lca_0_0 := findLCA(root, 0, 0)
+
+/*	-- test for empty tree */
+	empty_tree_result := findLCA(nil, 0, 0)
 
 	t.Log("LCA(4,5): ", lca_4_5)
 	if lca_4_5 != 3 {
@@ -52,8 +57,11 @@ func TestFindLCA(t *testing.T){
 	}
 	t.Log("LCA(0,0): ", lca_0_0)
 	if lca_0_0 != -1 {
-		t.Errorf("LCA(0,0) should be 0, got %d", lca_0_0)
+		t.Errorf("LCA(0,0) should be -1, got %d", lca_0_0)
 	}
-	
+	t.Log("LCA(empty): ", empty_tree_result)
+	if empty_tree_result != -1 {
+		t.Errorf("LCA(empty) should be -1, got %d", empty_tree_result)
+	}
 }
 
