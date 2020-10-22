@@ -1,5 +1,6 @@
 package main
 
+
 type bin_node struct{
 	key int
 	left, right *bin_node
