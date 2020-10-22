@@ -1,4 +1,5 @@
-  
+import pytest
+
 # A binary tree node 
 class Node: 
     # Constructor to create a new binary node 
@@ -7,6 +8,36 @@ class Node:
         self.left = None
         self.right = None
   
+
+class TestLCA: 
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.right.left = Node(4)
+    root.right.right = Node(5)
+    root.right.left.right = Node(6)
+    root.left.left = Node(7)
+    root.left.left.left = Node(8)
+    root.right.right.right = Node(9)
+    root.right.left.left = Node(10)
+    root.left.left.left.left = Node(11)
+
+    def test_base_case(self):
+        assert findLCA(self.root, 4, 5) == 3
+        assert findLCA(self.root, 4, 6) == 4
+        assert findLCA(self.root, 3, 4) == 3
+        assert findLCA(self.root, 2, 2) == 2
+        assert findLCA(self.root, 6, 5) == 3
+    
+    def test_node_missing(self):
+        assert findLCA(self.root, 10, 12) == -1
+
+    def test_both_nodes_missing(self):
+        assert findLCA(self.root, 0,0) == -1
+    
+    def test_empty_tree(self):
+        assert findLCA(None, 0, 0) == -1
+
 
 def findPath( root, path, k): 
 
@@ -46,18 +77,3 @@ def findLCA(root, n1, n2):
         i += 1
     return path1[i-1] 
   
-  
-# Driver program to test above function 
-# Let's create the Binary Tree shown in above diagram 
-root = Node(1) 
-root.left = Node(2) 
-root.right = Node(3) 
-root.left.left = Node(4) 
-root.left.right = Node(5) 
-root.right.left = Node(6) 
-root.right.right = Node(7) 
-  
-print("LCA(4, 5) = %d" %(findLCA(root, 4, 5,))) 
-print("LCA(4, 6) = %d" %(findLCA(root, 4, 6))) 
-print("LCA(3, 4) = %d" %(findLCA(root,3,4))) 
-print("LCA(2, 4) = %d" %(findLCA(root,2, 4))) 
