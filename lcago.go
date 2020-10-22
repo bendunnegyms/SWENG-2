@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 type bin_node struct{
 	key int
@@ -35,7 +34,6 @@ func findLCA(root *bin_node, k1, k2 int) int {
 	path_2 := make([]int, 0)
 
 	if !findPath(root, &path_1, k1) || !findPath(root, &path_2, k2){
-		fmt.Println("here4")
 		return -1
 	}
 
@@ -51,21 +49,4 @@ func findLCA(root *bin_node, k1, k2 int) int {
 }
 
 func main(){
-	root := &bin_node{key:1}
-	root.left = &bin_node{key:2}
-	root.right = &bin_node{key:3}
-	root.left.left = &bin_node{key:4}
-	root.left.right = &bin_node{key:5}
-	root.right.left = &bin_node{key:6}
-	root.right.right = &bin_node{key:7}
-	lca_4_5 := findLCA(root, 4, 5)
-	lca_4_6 := findLCA(root, 4, 6)
-	lca_3_4 := findLCA(root, 3, 4)
-	lca_2_4 := findLCA(root, 2, 4)
-	
-	fmt.Println("LCA(4,5) = " + fmt.Sprint(lca_4_5))
-	fmt.Println("LCA(4,6) = " + fmt.Sprint(lca_4_6))
-	fmt.Println("LCA(3,4) = " + fmt.Sprint(lca_3_4))
-	fmt.Println("LCA(2,4) = " + fmt.Sprint(lca_2_4))
-	
 }
