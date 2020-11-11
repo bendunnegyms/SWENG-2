@@ -4,20 +4,23 @@ class DAG:
     def __init__(self):
         self.DAG.clear()
     
-    def add_node(self, key):
-        if key in self.DAG:
-            print("Fail. Key in DAG.")
-            return
+    def add_edge(self, k1,k2):
 
-        self.DAG[key] = []
-        if not self.validate:
-            del self.DAG[key]
+        if k1 not in self.DAG:
+            self.DAG[k1] = [k2]
+            if not self.__validate:
+                del self.DAG[k1]
+                return False
+            else:
+                return True
+        else:
+            self.DAG[k1].append(k2)
+            if not self.__validate:
+                self.DAG[k1].remove(k2)
     
 
-    def validate(self, key, path = None):
+    def __validate(self, key):
         vol_dag = self.DAG.copy()
-        if not path:
-            path = []
 
         if len(self.DAG[key]) == 0:
             return True
@@ -33,7 +36,7 @@ class DAG:
                 return True
             else: 
                 return False
-                
+
 
     # def reverse_graph(self):
     #     reverse = {}
@@ -59,6 +62,3 @@ class DAG:
         for key in dag:
             if len(dag[key])==0:
                 return key
-
-    def add_edge(self):
-        return
