@@ -1,5 +1,5 @@
 # SWENG-2
-## Software Engineering Year 3 
+## Software Engineering Year 3 - Vsevolod Syrtsov
 
 ### Python is the language I'm comfortable with, Golang I picked up because it is quite similar to C
 
