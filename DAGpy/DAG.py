@@ -38,19 +38,19 @@ class DAG:
                 return False
 
 
-    # def reverse_graph(self):
-    #     reverse = {}
-    #     dag2reverse = self.DAG.copy()
+    def reverse_graph(self):
+        reverse = {}
+        dag2reverse = self.DAG.copy()
 
-    #     while self.__check_for_empty(dag2reverse):
-    #         key = self.__get_empty_node
-    #         del dag2reverse[key]
-    #         reverse[key] = []
-    #         for remaining_node in dag2reverse:
-    #             if key in dag2reverse[remaining_node]:
-    #                 reverse[key].append(remaining_node)
+        while self.__check_for_empty(dag2reverse):
+            key = self.__get_empty_node
+            del dag2reverse[key]
+            reverse[key] = []
+            for remaining_node in dag2reverse:
+                if key in dag2reverse[remaining_node]:
+                    reverse[key].append(remaining_node)
 
-    #     return reverse
+        return reverse
     
     def __check_for_empty(self, dag):
         for key in dag:
