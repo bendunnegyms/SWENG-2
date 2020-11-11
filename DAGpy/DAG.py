@@ -90,15 +90,6 @@ class DAG:
         reverse = {}
         dag2reverse = copy.deepcopy(self.DAG)
 
-        # while self.__check_for_empty(dag2reverse):
-        #     key = self.__get_empty_node(dag2reverse)
-        #     del dag2reverse[key]
-        #     reverse[key] = []
-        #     for remaining_node in dag2reverse:
-        #         if key in dag2reverse[remaining_node]:
-        #             reverse[key].append(remaining_node)
-        #             reverse[remaining_node] = []
-
         for key in dag2reverse:
             reverse[key] = []
 
@@ -178,6 +169,7 @@ class TestDAGLCA:
         assert self.dag_main.add_edge(2,4) == False # loop at 0-2-4-0
 
     def test_LCA(self):
+        # single source
         lca_dag = DAG()
         lca_dag.add_edge("A", "E")
         lca_dag.add_edge("A", "B")
@@ -185,14 +177,13 @@ class TestDAGLCA:
         lca_dag.add_edge("B", "D")
         lca_dag.add_edge("C", "D")
         lca_dag.add_edge("C", "E")
-        assert lca_dag.LCA("D", "E") == "C"
+        assert lca_dag.LCA("D", "E") == ["C"]
         
+        # double source, mutliple ancestors
+        lca_dag_2 = DAG()
+        lca_dag_2.add_edge("A", "C")
+        lca_dag_2.add_edge("A", "D")
+        lca_dag_2.add_edge("B", "C")
+        lca_dag_2.add_edge("B", "D")
+        assert lca_dag_2.LCA("C", "D") == ["A", "B"]
         
-lca_dag = DAG()
-lca_dag.add_edge("A", "E")
-lca_dag.add_edge("A", "B")
-lca_dag.add_edge("A", "C")
-lca_dag.add_edge("B", "D")
-lca_dag.add_edge("C", "D")
-lca_dag.add_edge("C", "E")
-lca_dag.LCA("D", "E")
